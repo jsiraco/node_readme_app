@@ -6,37 +6,75 @@ let licenseBadge = "";
 const licensePick = (license) => {
     switch (license) {
         case "Apache":
-            licenseBadge = "![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg) This work is protected under the Apache License: (https://opensource.org/licenses/Apache-2.0)";
+            licenseBadge = "This work is protected under the Apache License: (https://opensource.org/licenses/Apache-2.0)";
             break; 
         case "Boost":
-            licenseBadge = "![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg) This work is protected under the Boost License: (https://www.boost.org/LICENSE_1_0.txt)";
+            licenseBadge = "This work is protected under the Boost License: (https://www.boost.org/LICENSE_1_0.txt)";
             break; 
         case "BSD 3-Clause":
-            licenseBadge = "![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg) This work is protected under the BSD License: (https://opensource.org/licenses/BSD-3-Clause)";
+            licenseBadge = "This work is protected under the BSD License: (https://opensource.org/licenses/BSD-3-Clause)";
             break; 
         case "BSD 2-Clause":
-            licenseBadge = "![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg) This work is protected under the BSD License: (https://opensource.org/licenses/BSD-2-Clause)";
+            licenseBadge = "This work is protected under the BSD License: (https://opensource.org/licenses/BSD-2-Clause)";
             break; 
         case "Creative Commons":
-            licenseBadge = "![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png) This work is protected under the Creative Commons License: (http://creativecommons.org/publicdomain/zero/1.0/)";
+            licenseBadge = "This work is protected under the Creative Commons License: (http://creativecommons.org/publicdomain/zero/1.0/)";
             break; 
         case "Eclipse":
-            licenseBadge = "![License](https://img.shields.io/badge/License-EPL%201.0-red.svg) This work is protected under the Eclipse License: (https://opensource.org/licenses/EPL-1.0)";
+            licenseBadge = "This work is protected under the Eclipse License: (https://opensource.org/licenses/EPL-1.0)";
             break; 
         case "GNU":
-            licenseBadge = "![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg) This work is protected under the GNU License: (https://www.gnu.org/licenses/gpl-3.0)";
+            licenseBadge = "This work is protected under the GNU License: (https://www.gnu.org/licenses/gpl-3.0)";
             break; 
         case "MIT":
-            licenseBadge = "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) This work is protected under the MIT License: (https://opensource.org/licenses/MIT)";
+            licenseBadge = "This work is protected under the MIT License: (https://opensource.org/licenses/MIT)";
             break; 
         case "Mozilla":
-            licenseBadge = "![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg) This work is protected under the Mozilla License: (https://opensource.org/licenses/MPL-2.0)";
+            licenseBadge = "This work is protected under the Mozilla License: (https://opensource.org/licenses/MPL-2.0)";
             break; 
         case "Unlicense":
-            licenseBadge = "![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg) This work is protected under the Unlicense License: (http://unlicense.org/)";
+            licenseBadge = "This work is protected under the Unlicense License: (http://unlicense.org/)";
             break; 
         default:
-            licenseBadge = "Tjis work is protected by default Copyright Law";
+            licenseBadge = "This work is protected by default Copyright Law";
+    }
+    return licenseBadge;
+
+}
+const licenseBadgePick = (license) => {
+    switch (license) {
+        case "Apache":
+            licenseBadge = "![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)";
+            break; 
+        case "Boost":
+            licenseBadge = "![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)";
+            break; 
+        case "BSD 3-Clause":
+            licenseBadge = "![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)";
+            break; 
+        case "BSD 2-Clause":
+            licenseBadge = "![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)";
+            break; 
+        case "Creative Commons":
+            licenseBadge = "![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)";
+            break; 
+        case "Eclipse":
+            licenseBadge = "![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)";
+            break; 
+        case "GNU":
+            licenseBadge = "![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)";
+            break; 
+        case "MIT":
+            licenseBadge = "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)";
+            break; 
+        case "Mozilla":
+            licenseBadge = "![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)";
+            break; 
+        case "Unlicense":
+            licenseBadge = "![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)";
+            break; 
+        default:
+            licenseBadge = "This work is protected by default Copyright Law";
     }
     return licenseBadge;
 }
@@ -53,7 +91,9 @@ const generateReadMe = (data) =>
 [Tests](#tests)
 [Questions](#questions)
 
-## Description 
+## Description
+${licenseBadgePick(data.license)} 
+
 ${data.description}
 
 ## Installation
@@ -62,6 +102,9 @@ ${data.installation}
 
 ## License
 ${licensePick(data.license)}
+
+## Contributing
+${data.contributing}
 
 ## Usage
 ${data.usage}
@@ -104,6 +147,11 @@ inquirer
             message: "Select a license",
             choices: ["Apache", "Boost", "BSD 3-Clause", "BSD 2-Clause", "Creative Commons", "Eclipse", "GNU", "MIT",
                 "Mozilla", "Unlicense"],
+        },
+        {
+            type: "input",
+            name: "contributing",
+            message: "How would you like people to contribute?",
         },
         {
             type: "input",
