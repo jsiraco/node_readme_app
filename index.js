@@ -1,8 +1,11 @@
-
+//requires the inquirer package
 const inquirer = require("inquirer");
+//requires the fs package through npm init
 const fs = require("fs");
+//default value for licensebadge
 let licenseBadge = "";
 
+//a switch statement that changes which license badge is displayed depending on user input
 const licensePick = (license) => {
     switch (license) {
         case "Apache":
@@ -41,6 +44,8 @@ const licensePick = (license) => {
     return licenseBadge;
 
 }
+
+//a switch statement that changes the description of what license is used based on input
 const licenseBadgePick = (license) => {
     switch (license) {
         case "Apache":
@@ -79,6 +84,7 @@ const licenseBadgePick = (license) => {
     return licenseBadge;
 }
 
+//This function contains a template literal that will style the markdown file and insert the user inputs into the corresponding section
 const generateReadMe = (data) =>
     `
 # ${data.title}
@@ -124,6 +130,7 @@ ${data.email}
 
 `;
 
+//inquirer package that has user questions and returns them
 inquirer
     .prompt([
         {
@@ -179,9 +186,11 @@ inquirer
             message: "Please your Email",
         },
     ])
+    //Takes the data from the questions and generates the file
     .then((data) => {
         const filename = `${data.title}.md`;
         const contentMD = generateReadMe(data);
+        //writes the file to the system, logs either a success or error
         fs.writeFile(filename, contentMD, (err) => {
             err ? console.log(err) : console.log("Success!")
         });
