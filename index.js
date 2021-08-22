@@ -3,40 +3,42 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const { title } = require("process");
 
-const generateReadMe = (title, description, installation, license, usage, credits, tests, github, email) =>
+const generateReadMe = (data) =>
     `
-# ${title}
+# ${data.title}
 
 ## Table of Contents
 [Installation](#installation)
 [License](#license)
 [Usage](#usage)
 [Credits](#credits)
+[Tests](#tests)
+[Questions](#questions)
 
 ## Description 
-${description}
+${data.description}
 
 ## Installation
-${installation}
+${data.installation}
 
 ## License
-${license}
+${data.license}
 
 ## Usage
-${usage}
+${data.usage}
 
 ## Credits
-${credits}
+${data.credits}
 
 ## Tests
-${tests}
+${data.tests}
 
 ## Questions
 ### GitHub
-${github}
+${data.github}
 
 ### Email
-${email}
+${data.email}
 
 `;
 
